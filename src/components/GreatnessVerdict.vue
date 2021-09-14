@@ -1,8 +1,8 @@
 <template>
-  <div class="verdict-container card">
+  <div class="card">
     <div>
       <div class="verdict liberator emphasize">
-        {{ this.wins >= 9 ? "Yes" : "No" }}
+        {{ this.wins >= 9 ? "Yes" : "Not Yet." }}
       </div>
       <h2 class="liberator">
         <span class="emphasize">{{ this.wins }}</span> wins in 2021
@@ -20,9 +20,7 @@
 </template>
 
 <style scoped>
-.verdict-container {
-  min-width: 50%;
-}
+
 .verdict-container > p {
   padding: 0.25rem 0rem;
 }
