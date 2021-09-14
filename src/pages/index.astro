@@ -1,17 +1,8 @@
 ---
-// Component Imports
-// You can import components from any supported Framework here!
 import HuskerSchedule from '../components/HuskerSchedule.vue';
 import GreatnessVerdict from '../components/GreatnessVerdict.vue';
 
-// Component Script:
-// You can write any JavaScript/TypeScript that you'd like here.
-// It will run during the build, but never in the browser.
-// All variables are available to use in the HTML template below.
 let title = 'Is Nebraska Great Again?';
-
-// Full Astro Component Syntax:
-// https://docs.astro.build/core-concepts/astro-components/
 ---
 <html lang="en">
 <head>
@@ -39,18 +30,9 @@ let title = 'Is Nebraska Great Again?';
                 <GreatnessVerdict client:visible />
             </div>
             <div>
-            <HuskerSchedule client:visible />
+                <HuskerSchedule client:visible />
             </div>
         </div>
-
-        <!--
-           - You can also use imported framework components directly in your markup!
-           -
-           - Note: by default, these components are NOT interactive on the client.
-           - The `:visible` directive tells Astro to make it interactive.
-           -
-           - See https://docs.astro.build/core-concepts/component-hydration/ 
-           -->
         
     </main>
 </body>

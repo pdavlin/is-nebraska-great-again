@@ -135,9 +135,9 @@ a:focus::after {
 }
 
 @media (prefers-color-scheme: dark) {
-  /* body {
-    --app-bg-color: #404652;
+  body {
+    --app-bg-color: #424242;
     --app-emphasis: var(--app-color-scarlet);
-    --app-card-shadow: #393f49 20px 20px 60px, #393f49 -20px -20px 60px;
-  } */
+    --app-card-shadow: #343434 20px 20px 60px, #343434 -20px -20px 60px;
+  }
 }
