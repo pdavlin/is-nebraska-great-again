@@ -62,7 +62,6 @@ export default {
   async beforeMount() {
     this.schedule = await this.getNewSchedule();
     this.wins = this.computeGreatness(this.schedule);
-    console.log(this.wins);
     this.$forceUpdate();
   },
 };

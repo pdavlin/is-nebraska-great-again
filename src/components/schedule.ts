@@ -44,7 +44,7 @@ export const localSchedule = [
     away_points: 3,
   },
   {
-    start_date: '2021-09-18T16:00:00.000Z',
+    start_date: '2021-09-18T11:00:00.000Z',
     start_time_tbd: false,
     home_team: 'Oklahoma',
     home_points: null,
@@ -60,7 +60,7 @@ export const localSchedule = [
     away_points: null,
   },
   {
-    start_date: '2021-10-02T23:30:00.000Z',
+    start_date: '2021-10-02T17:30:00.000Z',
     start_time_tbd: false,
     home_team: 'Nebraska',
     home_points: null,
@@ -108,7 +108,7 @@ export const localSchedule = [
     away_points: null,
   },
   {
-    start_date: '2021-11-26T18:30:00.000Z',
+    start_date: '2021-11-26T12:30:00.000Z',
     start_time_tbd: false,
     home_team: 'Nebraska',
     home_points: null,
