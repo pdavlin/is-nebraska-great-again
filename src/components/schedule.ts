@@ -45,7 +45,7 @@ export const localSchedule = [
   },
   {
     start_date: '2021-09-18T11:00:00.000Z',
-    start_time_tbd: false,
+    start_time_tbd: true,
     home_team: 'Oklahoma',
     home_points: null,
     away_team: 'Nebraska',
@@ -61,7 +61,7 @@ export const localSchedule = [
   },
   {
     start_date: '2021-10-02T17:30:00.000Z',
-    start_time_tbd: false,
+    start_time_tbd: true,
     home_team: 'Nebraska',
     home_points: null,
     away_team: 'Northwestern',
@@ -109,7 +109,7 @@ export const localSchedule = [
   },
   {
     start_date: '2021-11-26T12:30:00.000Z',
-    start_time_tbd: false,
+    start_time_tbd: true,
     home_team: 'Nebraska',
     home_points: null,
     away_team: 'Iowa',
