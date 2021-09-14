@@ -9,7 +9,11 @@
     "preview": "astro preview"
   },
   "devDependencies": {
-    "astro": "^0.20.5",
-    "@astrojs/renderer-vue": "^0.1.7"
+    "@astrojs/renderer-vue": "^0.1.7",
+    "astro": "^0.20.5"
+  },
+  "dependencies": {
+    "@netlify/functions": "^0.7.2",
+    "node-fetch": "^3.0.0"
   }
 }

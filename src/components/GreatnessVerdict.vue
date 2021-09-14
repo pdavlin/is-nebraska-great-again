@@ -2,10 +2,10 @@
   <div class="card">
     <div>
       <div class="verdict liberator emphasize">
-        {{ this.wins >= 9 ? "Yes" : "Not Yet." }}
+        {{ this.wins >= 9 ? "oh yeah baby the skers are back!!!!!!!!!" : "Not Yet." }}
       </div>
       <h2 class="liberator">
-        <span class="emphasize">{{ this.wins }}</span> wins in 2021
+        <span class="emphasize">{{this.wins ?? 2}}</span> wins in 2021
       </h2>
     </div>
     <p>
@@ -20,7 +20,6 @@
 </template>
 
 <style scoped>
-
 .verdict-container > p {
   padding: 0.25rem 0rem;
 }
@@ -31,19 +30,28 @@
 </style>
 
 <script>
-import { huskerSchedule } from "./schedule";
+import { getSchedule, localSchedule, localWins } from "./schedule";
 export default {
   setup() {
-    const schedule = huskerSchedule;
-    let wins;
+    let schedule = localSchedule;
+    let wins = localWins;
     return {
       schedule,
       wins,
     };
   },
   methods: {
-    computeGreatness: () =>
-      huskerSchedule
+    getNewSchedule: async () =>
+      await getSchedule().then((response) => response),
+    computeGreatness: (schedule) =>
+      schedule
+        .map(game => {
+          return game.away_team === 'Nebraska' ? {
+            huskerScore: game.away_points, opponentScore: game.home_points
+          } : {
+            huskerScore: game.home_points, opponentScore: game.away_points
+          }
+        })
         .map((game) => {
           return game.huskerScore && game.huskerScore > game.opponentScore
             ? 1
@@ -51,8 +59,11 @@ export default {
         })
         .reduce((val, acc) => acc + val),
   },
-  beforeMount() {
-    this.wins = this.computeGreatness();
+  async beforeMount() {
+    this.schedule = await this.getNewSchedule();
+    this.wins = this.computeGreatness(this.schedule);
+    console.log(this.wins);
+    this.$forceUpdate();
   },
 };
 </script>
