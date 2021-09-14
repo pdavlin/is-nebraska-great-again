@@ -1,0 +1,62 @@
+---
+// Component Imports
+// You can import components from any supported Framework here!
+import HuskerSchedule from '../components/HuskerSchedule.vue';
+import GreatnessVerdict from '../components/GreatnessVerdict.vue';
+
+// Component Script:
+// You can write any JavaScript/TypeScript that you'd like here.
+// It will run during the build, but never in the browser.
+// All variables are available to use in the HTML template below.
+let title = 'Is Nebraska Great Again?';
+
+// Full Astro Component Syntax:
+// https://docs.astro.build/core-concepts/astro-components/
+---
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>{title}</title>
+
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    
+    <link rel="stylesheet" href="/style/global.css">
+</head>
+<header>
+    <h1 class="liberator">Is <span class="emphasize">Nebraska</span> Great Again?</h1>
+        <div class="top-aligned-flex subhead">
+            Upon his hire in 2017, Scott Frost was tasked to&nbsp;
+            <span><a href="https://twitter.com/tsmitty1206/status/730467841820909568?s=21" class="liberator fix-liberator-anchor">Make Nebraska Great Again.</a></span>&nbsp;
+            Has he done the job?
+        </div>
+    </header>
+<body>
+    <main>
+        <div class="container">
+            <!-- <img width="60" height="80" src="/assets/logo.svg" alt="Astro logo"> -->
+            <div>
+                <GreatnessVerdict client:visible />
+            </div>
+            <div>
+            <HuskerSchedule client:visible />
+            </div>
+        </div>
+
+        <!--
+           - You can also use imported framework components directly in your markup!
+           -
+           - Note: by default, these components are NOT interactive on the client.
+           - The `:visible` directive tells Astro to make it interactive.
+           -
+           - See https://docs.astro.build/core-concepts/component-hydration/ 
+           -->
+        
+    </main>
+</body>
+<footer class="top-aligned-flex">Inspired by&nbsp;
+<span><a href="https://istexasbackyet.com">Is Texas Back Yet?</a></span>
+&nbsp;Made lazily by&nbsp;
+<span><a href="https://twitter.com/patrickdavlin">Patrick Davlin</a></span>
+</footer>
+</html>

@@ -1,0 +1,143 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+@font-face {
+  font-family: Gothvetica;
+  src: url(../assets/Gothvetica.ttf);
+}
+
+@font-face {
+  font-family: LiberatorMedium;
+  src: url(../assets/Liberator-Medium.ttf);
+}
+:root {
+  font-family: Helvetica, -apple-system, BlinkMacSystemFont, Segoe UI, Arial,
+    sans-serif, Apple Color Emoji, Segoe UI Emoji;
+  font-size: 1rem;
+  --user-font-scale: 1rem - 16px;
+  font-size: clamp(
+    0.875rem,
+    0.4626rem + 1.0309vw + var(--user-font-scale),
+    1.125rem
+  );
+  --app-color-scarlet: #d00000;
+  --app-color-cream: #f5f1e7;
+  --app-bg-color: var(--app-color-scarlet);
+  --app-txt-color: var(--app-color-cream);
+  --app-card-shadow: #bb0000 20px 20px 60px, #d93232 -20px -20px 60px;
+  --app-emphasis: var(--app-color-cream);
+}
+
+header {
+  height: 100px;
+}
+
+body {
+  padding: 2rem;
+  width: 100%;
+  min-height: 100vh;
+  background: var(--app-bg-color);
+  color: var(--app-txt-color);
+}
+
+main {
+  width: 100%;
+}
+
+h1 {
+  font-size: 4rem;
+}
+
+.subhead {
+  margin-left: 0.25rem;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  gap: 1em;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 2rem;
+}
+
+.liberator {
+  font-family: LiberatorMedium;
+  font-style: italic;
+}
+
+.emphasize {
+  color: var(--app-emphasis);
+}
+
+.card {
+  border-radius: 4px;
+  box-shadow: var(--app-card-shadow);
+  padding: 2rem;
+}
+
+.top-aligned-flex {
+  display: flex;
+  align-content: flex-start;
+}
+
+.fix-liberator-anchor {
+  padding-top: 0.25rem;
+}
+
+footer {
+  bottom: 1rem;
+  position: fixed;  
+}
+
+a.active {
+  color: var(--app-emphasis);
+}
+
+a {
+  color: var(--app-emphasis);
+  text-decoration: none;
+  overflow: hidden;
+  display: inline-block;
+  position: relative;
+}
+
+/* Fade in */
+a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0.1em;
+  background-color: var(--app-emphasis);
+  opacity: 0;
+  transition: opacity 300ms, transform 300ms;
+}
+
+a:hover::after,
+a:focus::after {
+  opacity: 1;
+  transform: translate3d(0, 0.2em, 0);
+}
+
+a::after {
+  opacity: 1;
+  transform: translate3d(-100%, 0, 0);
+}
+
+a:hover::after,
+a:focus::after {
+  transform: translate3d(0, 0, 0);
+}
+
+@media (prefers-color-scheme: dark) {
+  /* body {
+    --app-bg-color: #404652;
+    --app-emphasis: var(--app-color-scarlet);
+    --app-card-shadow: #393f49 20px 20px 60px, #393f49 -20px -20px 60px;
+  } */
+}
