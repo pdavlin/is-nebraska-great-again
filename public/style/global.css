@@ -134,6 +134,14 @@ a:focus::after {
   transform: translate3d(0, 0, 0);
 }
 
+@media screen and (max-width: 600px) {
+  .container {
+    flex-direction: column;
+    margin-top: 4rem;
+    gap: 2rem;
+  }
+}
+
 @media (prefers-color-scheme: dark) {
   body {
     --app-bg-color: #424242;
