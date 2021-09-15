@@ -164,3 +164,9 @@ a.active {
     gap: 2rem;
   }
 }
+
+@media screen and (max-width: 400px) {
+  .verdict-container {
+    margin-top: 8rem;
+  }
+}
