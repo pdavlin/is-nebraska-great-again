@@ -1,11 +1,11 @@
 import { Handler } from '@netlify/functions';
 import fetch from 'node-fetch';
+import {cfdbKey} from '../../secrets/cfdb';
 
 const url = 'https://api.collegefootballdata.com/games?year=2021&team=Nebraska';
-const key = 'Bearer zQvynJBokwzQKCJgXmet5B7F/b+0IGeID8SmKb5jgc7aP2PPP+YcNb0oGDl5IpNK'
 
 const handler: Handler = async () => {
-  return fetch(url, { headers: { Accept: 'application/json', Authorization: key } })
+  return fetch(url, { headers: { Accept: 'application/json', Authorization: cfdbKey } })
     .then((response) => response.json())
     .then((data) => ({
       statusCode: 200,
