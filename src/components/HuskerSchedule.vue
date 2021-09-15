@@ -4,16 +4,12 @@
     <div v-for="game in schedule" v-bind:key="game.id">
       <div class="game-line">
         <div>
-          {{ game.away_team === "Nebraska" ? "@" : "vs" }}
-          {{ game.away_team === "Nebraska" ? game.home_team : game.away_team }}
+          {{ game.home_team === "Nebraska" ? "vs" : "@" }}
+          {{ game.home_team === "Nebraska" ? game.away_team : game.home_team }}
         </div>
-        <div v-if="Date.parse(game.start_date) < Date.now()">
+        <div v-if="dateInPast(game.start_date)">
           {{
-            game.away_team === "Nebraska"
-              ? game.away_points > game.home_points
-                ? "W"
-                : "L"
-              : game.home_points > game.away_points
+            nebraskaWon(game.home_team, game.home_points, game.away_points)
               ? "W"
               : "L"
           }}
@@ -43,16 +39,18 @@ import { getSchedule, localSchedule } from "./schedule";
 export default {
   setup() {
     let schedule = localSchedule;
-    let today = Date.now();
     return {
       schedule,
-      today,
     };
   },
   methods: {
     getNewSchedule: async () =>
       await getSchedule().then((response) => response),
-    dateInPast: (today, date) => Date.parse(date) < today,
+    dateInPast: (date) => new Date(date) <= new Date(Date.now()).setHours(+5),
+    nebraskaWon: (home_team, home_points, away_points) =>
+      home_team === "Nebraska"
+        ? away_points < home_points
+        : home_points < away_points,
     getGameTime: (start_date, tbd) => {
       const asDate = new Date(start_date);
       let output = asDate
@@ -71,7 +69,6 @@ export default {
     },
   },
   async beforeMount() {
-    this.today = Date.now();
     this.schedule = await this.getNewSchedule();
     this.$forceUpdate();
   },

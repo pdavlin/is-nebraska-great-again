@@ -5,7 +5,7 @@
         {{ this.wins >= 9 ? "oh yeah baby the skers are back!!!!!!!!!" : "Not Yet." }}
       </div>
       <h2 class="liberator">
-        <span class="emphasize">{{this.wins ?? 0}}</span> wins in 2021
+        <span class="emphasize">{{this.wins ?? 2}}</span> wins in 2021
       </h2>
     </div>
     <p>
