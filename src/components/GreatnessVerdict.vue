@@ -13,7 +13,7 @@
       championships.
     </p>
     <p>
-      Failing that, Nebraska first needs to achieve the greatness of the Bo
+      Before that, the Huskers need to achieve the greatness of the Bo
       Pelini era: at least 9 wins, and 3 losses.
     </p>
   </div>
