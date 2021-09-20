@@ -47,9 +47,9 @@ export const localSchedule = [
     start_date: '2021-09-18T11:00:00.000Z',
     start_time_tbd: true,
     home_team: 'Oklahoma',
-    home_points: null,
+    home_points: 23,
     away_team: 'Nebraska',
-    away_points: null,
+    away_points: 16,
   },
   {
     start_date: '2021-09-25T04:00:00.000Z',
