@@ -1,7 +1,6 @@
 import { Handler } from '@netlify/functions';
 import fetch from 'node-fetch';
-import { cfdbKey } from '../../secrets/cfdb';
-import { env } from 'process';
+import { env, } from 'process';
 
 const url = 'https://api.collegefootballdata.com/games?year=2021&team=Nebraska';
 

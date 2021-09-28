@@ -55,9 +55,9 @@ export const localSchedule = [
     start_date: '2021-09-25T04:00:00.000Z',
     start_time_tbd: true,
     home_team: 'Michigan State',
-    home_points: null,
+    home_points: 23,
     away_team: 'Nebraska',
-    away_points: null,
+    away_points: 20,
   },
   {
     start_date: '2021-10-02T17:30:00.000Z',
