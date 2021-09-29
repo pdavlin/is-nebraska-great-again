@@ -1,7 +1,10 @@
 ---
-import HuskerSchedule from '../components/HuskerSchedule.vue';
-import GreatnessVerdict from '../components/GreatnessVerdict.vue';
+// Component Imports
+import { computeNumberOfWins, dateInPast, fetchScores, getGameTimeFromString, nebraskaWon } from '../utils/scheduleUtils.js';
 
+// Component Script:
+let gameData = await fetchScores();
+const wins: number = computeNumberOfWins(gameData);
 ---
 <html lang="en">
 <head>
@@ -31,20 +34,45 @@ import GreatnessVerdict from '../components/GreatnessVerdict.vue';
 </head>
 <header>
     <h1 class="liberator">Is <span class="emphasize">Nebraska</span> Great Again?</h1>
-        <div class="top-aligned-flex subhead">
-            Upon his hire in 2017, Scott Frost was tasked to 
-            &nbsp;<a href="https://twitter.com/tsmitty1206/status/730467841820909568?s=21" class="liberator fix-liberator-anchor">Make Nebraska Great Again.</a>&nbsp;
-            Has he done the job?
-        </div>
-    </header>
+    <div class="top-aligned-flex subhead">
+        Upon his hire in 2017, Scott Frost was tasked to 
+        &nbsp;<a href="https://twitter.com/tsmitty1206/status/730467841820909568?s=21" class="liberator fix-liberator-anchor">Make Nebraska Great Again.</a>&nbsp;
+        Has he done the job?
+    </div>
+</header>
 <body>
     <main>
         <div class="container">
             <div class='verdict-container'>
-                <GreatnessVerdict client:load />
+                <div class="card">
+                    <div>
+                        <div class="verdict liberator emphasize">
+                        { wins >= 9 ? "oh yeah, I'm thinkin' the skers are back!" : "Not Yet." }
+                        </div>
+                        <h2 class="liberator">
+                        <span class="emphasize">{wins}</span> wins in 2021
+                        </h2>
+                    </div>
+                    <p>
+                        To be great again, Nebraska needs to win back-to-back national
+                        championships.
+                    </p>
+                    <p>
+                        Before that, the Huskers need to achieve the greatness of the Bo
+                        Pelini era: at least 9 wins, and 3 losses.
+                    </p>
+                </div>
             </div>
             <div class='schedule-container'>
-                <HuskerSchedule client:load />
+                  <div>
+                    <h2 class="liberator">Husker Schedule</h2>
+                    {gameData.map((item) => (
+                        <div class="game-line">
+                            <div>{item.home_team === 'Nebraska' ? `vs ${item.away_team}` : `@ ${item.home_team}`}</div>
+                            {dateInPast(item.start_date) ? nebraskaWon(item.home_team, item.home_points, item.away_points) ? 'W' : 'L' : getGameTimeFromString(item)}
+                        </div>
+                    ))}
+                </div>
             </div>
         </div>
     </main>

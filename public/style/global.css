@@ -170,3 +170,16 @@ a.active {
     margin-top: 8rem;
   }
 }
+
+.verdict-container > p {
+  padding: 0.25rem 0rem;
+}
+
+.verdict {
+  font-size: 8rem;
+}
+
+.game-line {
+  display: flex;
+  justify-content: space-between;
+}
