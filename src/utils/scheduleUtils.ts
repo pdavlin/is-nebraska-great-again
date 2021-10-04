@@ -1,11 +1,22 @@
 import { env } from "process";
-import fetch from 'node-fetch';
+import fetch from "node-fetch";
 import "dotenv/config";
 
 const url = "https://api.collegefootballdata.com/games?year=2021&team=Nebraska";
 
 const getCfdbKey = (): string => {
   return process.env.CFDB_KEY;
+};
+
+export const computeNumberOfWins = (schedule): number => {
+  return schedule
+    .map((game) =>
+      game.home_team === "Nebraska"
+        ? { huskerScore: game.home_points, opponentScore: game.away_points }
+        : { huskerScore: game.away_points, opponentScore: game.home_points }
+    )
+    .map((game) => game.huskerScore && game.huskerScore > game.opponentScore)
+    .reduce((acc, curr) => acc + curr);
 };
 
 export const fetchScores = async () => {
@@ -25,6 +36,19 @@ export const dateInPast = (date: string) => {
   return gameDate < today;
 };
 
+export const formatWinLossString = (
+  home_team: string,
+  home_points: number,
+  away_points: number
+) =>
+  home_team === "Nebraska"
+    ? home_points > away_points
+      ? `W ${home_points}-${away_points}`
+      : `L ${home_points}-${away_points}`
+    : away_points > home_points
+    ? `W ${away_points}-${home_points}`
+    : `L ${away_points}-${home_points}`;
+
 export const getGameTimeFromString = (game) => {
   const startDate = game.start_date;
   const tbd = game.start_time_tbd;
@@ -42,24 +66,4 @@ export const getGameTimeFromString = (game) => {
         .slice(0, -3)
     );
   return output;
-};
-
-export const nebraskaWon = (
-  home_team: string,
-  home_points: number,
-  away_points: number
-) =>
-  home_team === "Nebraska"
-    ? away_points < home_points
-    : home_points < away_points;
-
-export const computeNumberOfWins = (schedule): number => {
-  return schedule
-    .map((game) =>
-      game.home_team === "Nebraska"
-        ? { huskerScore: game.home_points, opponentScore: game.away_points }
-        : { huskerScore: game.away_points, opponentScore: game.home_points }
-    )
-    .map((game) => game.huskerScore && game.huskerScore > game.opponentScore)
-    .reduce((acc, curr) => acc + curr);
 };
