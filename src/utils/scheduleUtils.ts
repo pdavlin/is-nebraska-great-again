@@ -7,8 +7,9 @@ const url = "https://api.collegefootballdata.com/games?year=2021&team=Nebraska";
 
 const getCfdbKey = (): string => process.env.CFDB_KEY;
 
-export const computeNumberOfWins = (schedule): number =>
-  schedule
+export const computeNumberOfWins = (schedule): number => {
+  console.log("computeNumberOfWins()");
+  return schedule
     .map((game) =>
       game.home_team === "Nebraska"
         ? { huskerScore: game.home_points, opponentScore: game.away_points }
@@ -16,6 +17,7 @@ export const computeNumberOfWins = (schedule): number =>
     )
     .map((game) => game.huskerScore && game.huskerScore > game.opponentScore)
     .reduce((acc, curr) => acc + curr);
+};
 
 export const fetchScores = async () => {
   const res = await fetch(url, {
@@ -27,7 +29,10 @@ export const fetchScores = async () => {
   return data;
 };
 
-export const dateInPast = (date: string) => isPast(parseISO(date));
+export const dateInPast = (date: string) => {
+  console.log("dateInPast");
+  isPast(parseISO(date));
+};
 
 export const formatWinLossString = (
   home_team: string,
@@ -42,8 +47,10 @@ export const formatWinLossString = (
     ? `W ${away_points}-${home_points}`
     : `L ${away_points}-${home_points}`;
 
-export const getGameTimeFromGame = (game) =>
-  format(
+export const getGameTimeFromGame = (game) => {
+  console.log("getGameTimeFromGame");
+  return format(
     utcToZonedTime(parseISO(game.start_date), "America/Chicago"),
     game.start_time_tbd ? "MM/dd" : "MM/dd h:mmaaaaa"
   );
+};
