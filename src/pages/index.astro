@@ -1,6 +1,6 @@
 ---
 // Component Imports
-import { computeNumberOfWins, dateInPast, fetchScores, getGameTimeFromString, nebraskaWon } from '../utils/scheduleUtils.js';
+import { computeNumberOfWins, dateInPast, fetchScores, formatWinLossString, getGameTimeFromString } from '../utils/scheduleUtils.js';
 
 // Component Script:
 let gameData = await fetchScores();
@@ -27,9 +27,7 @@ const wins: number = computeNumberOfWins(gameData);
     <meta name="twitter:site" content="@PatrickDavlin">
 
     <title>Is Nebraska Great Again?</title>
-
-        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-    
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="stylesheet" href="/style/global.css">
 </head>
 <header>
@@ -66,10 +64,18 @@ const wins: number = computeNumberOfWins(gameData);
             <div class='schedule-container'>
                   <div>
                     <h2 class="liberator">Husker Schedule</h2>
-                    {gameData.map((item) => (
+                    {gameData.map((game) => (
                         <div class="game-line">
-                            <div>{item.home_team === 'Nebraska' ? `vs ${item.away_team}` : `@ ${item.home_team}`}</div>
-                            {dateInPast(item.start_date) ? nebraskaWon(item.home_team, item.home_points, item.away_points) ? 'W' : 'L' : getGameTimeFromString(item)}
+                            <div>
+                            {game.home_team === 'Nebraska' 
+                                ? `vs ${game.away_team}` 
+                                : `@ ${game.home_team}`}
+                            </div>
+                            <div>
+                            {dateInPast(game.start_date) 
+                                ? formatWinLossString(game.home_team, game.home_points, game.away_points) 
+                                : getGameTimeFromString(game)}
+                            </div>
                         </div>
                     ))}
                 </div>
