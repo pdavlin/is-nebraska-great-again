@@ -49,6 +49,7 @@ export const formatWinLossString = (
     : `L ${away_points}-${home_points}`;
 
 export const getGameTimeFromString = (game) => {
+  console.log(`${game.away_team} @ ${game.home_team}`);
   const startDate = game.start_date;
   console.log(startDate);
   const tbd = game.start_time_tbd;
