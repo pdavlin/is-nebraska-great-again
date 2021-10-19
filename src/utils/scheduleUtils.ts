@@ -63,6 +63,7 @@ export const getGameTimeFromString = (game) => {
         .toLocaleTimeString([], {
           hour: "2-digit",
           minute: "2-digit",
+          timeZone: "America/Chicago",
         })
         .slice(0, -3)
     );
