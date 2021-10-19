@@ -1,14 +1,13 @@
 import fetch from "node-fetch";
 import "dotenv/config";
+import { format, isPast, parseISO } from "date-fns";
 
 const url = "https://api.collegefootballdata.com/games?year=2021&team=Nebraska";
 
-const getCfdbKey = (): string => {
-  return process.env.CFDB_KEY;
-};
+const getCfdbKey = (): string => process.env.CFDB_KEY;
 
-export const computeNumberOfWins = (schedule): number => {
-  return schedule
+export const computeNumberOfWins = (schedule): number =>
+  schedule
     .map((game) =>
       game.home_team === "Nebraska"
         ? { huskerScore: game.home_points, opponentScore: game.away_points }
@@ -16,10 +15,8 @@ export const computeNumberOfWins = (schedule): number => {
     )
     .map((game) => game.huskerScore && game.huskerScore > game.opponentScore)
     .reduce((acc, curr) => acc + curr);
-};
 
 export const fetchScores = async () => {
-  getCfdbKey();
   const res = await fetch(url, {
     headers: {
       Authorization: getCfdbKey(),
@@ -29,11 +26,7 @@ export const fetchScores = async () => {
   return data;
 };
 
-export const dateInPast = (date: string) => {
-  const today = new Date();
-  const gameDate = new Date(date);
-  return gameDate < today;
-};
+export const dateInPast = (date: string) => isPast(parseISO(date));
 
 export const formatWinLossString = (
   home_team: string,
@@ -48,25 +41,8 @@ export const formatWinLossString = (
     ? `W ${away_points}-${home_points}`
     : `L ${away_points}-${home_points}`;
 
-export const getGameTimeFromString = (game) => {
-  console.log(`${game.away_team} @ ${game.home_team}`);
-  const startDate = game.start_date;
-  console.log(startDate);
-  const tbd = game.start_time_tbd;
-  const gameDate = new Date(startDate);
-  let output = gameDate
-    .toLocaleDateString("en-US", { timeZone: "America/Chicago" })
-    .slice(0, -5);
-  if (!tbd)
-    output = output.concat(" ").concat(
-      gameDate
-        .toLocaleTimeString([], {
-          hour: "2-digit",
-          minute: "2-digit",
-          timeZone: "America/Chicago",
-        })
-        .slice(0, -3)
-    );
-    console.log(output);
-  return output;
-};
+export const getGameTimeFromString = (game) =>
+  format(
+    parseISO(game.start_date),
+    game.start_time_tbd ? "MM/dd" : "MM/dd h:mmaaaaa"
+  );
