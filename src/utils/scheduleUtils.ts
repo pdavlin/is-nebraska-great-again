@@ -1,4 +1,3 @@
-import { env } from "process";
 import fetch from 'node-fetch';
 import "dotenv/config";
 
@@ -30,7 +29,7 @@ export const getGameTimeFromString = (game) => {
   const tbd = game.start_time_tbd;
   const gameDate = new Date(startDate);
   let output = gameDate
-    .toLocaleDateString("en-US", { timeZone: "GMT" })
+    .toLocaleDateString("en-US", { timeZone: "America/Chicago" })
     .slice(0, -5);
   if (!tbd)
     output = output.concat(" ").concat(
