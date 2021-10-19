@@ -1,7 +1,7 @@
 import fetch from "node-fetch";
 import "dotenv/config";
 import { isPast, parseISO } from "date-fns";
-import { format, utcToZonedTime } from "date-fns-tz";
+import { format } from "date-fns-tz";
 
 const url = "https://api.collegefootballdata.com/games?year=2021&team=Nebraska";
 
