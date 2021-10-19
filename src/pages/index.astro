@@ -1,6 +1,6 @@
 ---
 // Component Imports
-import { computeNumberOfWins, dateInPast, fetchScores, formatWinLossString, getGameTimeFromString } from '../utils/scheduleUtils.js';
+import { computeNumberOfWins, dateInPast, fetchScores, formatWinLossString, getGameTimeFromGame } from '../utils/scheduleUtils.js';
 
 // Component Script:
 let gameData = await fetchScores();
@@ -74,7 +74,7 @@ const wins: number = computeNumberOfWins(gameData);
                             <div>
                             {dateInPast(game.start_date) 
                                 ? formatWinLossString(game.home_team, game.home_points, game.away_points) 
-                                : getGameTimeFromString(game)}
+                                : getGameTimeFromGame(game)}
                             </div>
                         </div>
                     ))}
