@@ -31,7 +31,7 @@ export const fetchScores = async () => {
 
 export const dateInPast = (date: string) => {
   console.log("dateInPast");
-  isPast(parseISO(date));
+  return isPast(parseISO(date));
 };
 
 export const formatWinLossString = (
@@ -47,8 +47,8 @@ export const formatWinLossString = (
     ? `W ${away_points}-${home_points}`
     : `L ${away_points}-${home_points}`;
 
-export const getGameTimeFromGame = (game) => {
-  console.log("getGameTimeFromGame");
+export const getGameTimeFromString = (game) => {
+  console.log("getGameTimeFromString");
   return format(
     utcToZonedTime(parseISO(game.start_date), "America/Chicago"),
     game.start_time_tbd ? "MM/dd" : "MM/dd h:mmaaaaa"
