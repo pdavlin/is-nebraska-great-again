@@ -26,7 +26,8 @@
   --app-color-cream: #f5f1e7;
   --app-bg-color: var(--app-color-scarlet);
   --app-txt-color: var(--app-color-cream);
-  --app-card-shadow: #bb0000 20px 20px 60px, #d93232 -20px -20px 60px;
+  --app-card-background: linear-gradient(145deg, #df0000, #bb0000);
+  --app-card-shadow: #b10000 20px 20px 60px, #ef0000 -20px -20px 60px;
   --app-emphasis: var(--app-color-cream);
 }
 
@@ -73,9 +74,10 @@ h1 {
 }
 
 .card {
-  border-radius: 4px;
+  border-radius: 50px;
   box-shadow: var(--app-card-shadow);
   padding: 2rem;
+  background: var(--app-card-background);
 }
 
 footer {

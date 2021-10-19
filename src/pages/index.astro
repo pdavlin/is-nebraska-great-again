@@ -1,10 +1,10 @@
 ---
 // Component Imports
-import { computeNumberOfWins, dateInPast, fetchScores, formatWinLossString, getGameTimeFromString } from '../utils/scheduleUtils.js';
+import { bowlIneligible, computeNumberOfWinsAndRemainingGames, dateInPast, fetchScores, formatWinLossString, getGameTimeFromString, getRandomNoMessage } from '../utils/scheduleUtils.js';
 
 // Component Script:
 let gameData = await fetchScores();
-const wins: number = computeNumberOfWins(gameData);
+const winsAndRemainingGames = computeNumberOfWinsAndRemainingGames(gameData);
 ---
 <html lang="en">
 <head>
@@ -45,10 +45,10 @@ const wins: number = computeNumberOfWins(gameData);
                 <div class="card">
                     <div>
                         <div class="verdict liberator emphasize">
-                        { wins >= 9 ? "oh yeah, I'm thinkin' the skers are back!" : "Not Yet." }
+                        { winsAndRemainingGames.wins >= 9 ? "oh yeah, I'm thinkin' the skers are back!" : getRandomNoMessage(winsAndRemainingGames) }
                         </div>
                         <h2 class="liberator">
-                        <span class="emphasize">{wins}</span> wins in 2021
+                        <span class="emphasize">{winsAndRemainingGames.wins}</span> wins in 2021
                         </h2>
                     </div>
                     <p>
@@ -56,8 +56,9 @@ const wins: number = computeNumberOfWins(gameData);
                         championships.
                     </p>
                     <p>
-                        Before that, the Huskers need to achieve the greatness of the Bo
-                        Pelini era: at least 9 wins, and 3 losses.
+                    { bowlIneligible(winsAndRemainingGames) ? 
+                    "The Huskers won't even make a bowl in 2021! There's always next year, right Scott?"
+                    : "Before that, the Huskers need to achieve the greatness of the Bo Pelini era: at least 9 wins, and 3 losses."}
                     </p>
                 </div>
             </div>
