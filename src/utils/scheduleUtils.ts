@@ -1,7 +1,7 @@
 import fetch from "node-fetch";
 import "dotenv/config";
-import { isPast, parseISO } from "date-fns";
-import { format } from "date-fns-tz";
+import { format, isPast, parseISO } from "date-fns";
+import { utcToZonedTime } from "date-fns-tz";
 
 const url = "https://api.collegefootballdata.com/games?year=2021&team=Nebraska";
 
@@ -44,7 +44,6 @@ export const formatWinLossString = (
 
 export const getGameTimeFromGame = (game) =>
   format(
-    parseISO(game.start_date),
-    game.start_time_tbd ? "MM/dd" : "MM/dd h:mmaaaaa",
-    {timeZone: "America/Chicago"}
+    utcToZonedTime(parseISO(game.start_date), "America/Chicago"),
+    game.start_time_tbd ? "MM/dd" : "MM/dd h:mmaaaaa"
   );
