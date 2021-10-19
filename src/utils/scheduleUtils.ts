@@ -41,7 +41,7 @@ export const formatWinLossString = (
     ? `W ${away_points}-${home_points}`
     : `L ${away_points}-${home_points}`;
 
-export const getGameTimeFromString = (game) =>
+export const getGameTimeFromGame = (game) =>
   format(
     parseISO(game.start_date),
     game.start_time_tbd ? "MM/dd" : "MM/dd h:mmaaaaa"
