@@ -27,7 +27,7 @@
   --app-bg-color: var(--app-color-scarlet);
   --app-txt-color: var(--app-color-cream);
   --app-card-background: linear-gradient(145deg, #df0000, #bb0000);
-  --app-card-shadow: #b10000 20px 20px 60px, #ef0000 -20px -20px 60px;
+  --app-card-shadow: 20px 20px 60px #b10000, -20px -20px 60px #ef0000;
   --app-emphasis: var(--app-color-cream);
 }
 
@@ -92,7 +92,7 @@ a.active {
 
 @media screen and (min-width: 801px) {
   .container {
-    padding: 2rem;
+    padding: 3rem 2rem 2rem;
   }
   .verdict-container {
     min-width: 50%;
