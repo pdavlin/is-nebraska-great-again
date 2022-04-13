@@ -142,9 +142,9 @@ a.active {
     align-content: flex-start;
   }
   
-  .fix-liberator-anchor {
+  /* .fix-liberator-anchor {
     padding-top: 0.2rem;
-  }
+  } */
 }
 
 @media screen and (max-width: 800px) {
