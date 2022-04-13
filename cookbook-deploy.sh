@@ -1,4 +1,3 @@
-npm i
 docker-compose down
 npm run build
 docker build -t is-nebraska-great-again .
