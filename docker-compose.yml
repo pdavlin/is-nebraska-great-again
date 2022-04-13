@@ -8,11 +8,9 @@ services:
     networks:
       - traefik_public
     labels:
-      - "traefik.http.routers.inga.rule=Host(`www.isnebraskagreatagain.com`)"
+      - "traefik.http.routers.inga.rule=Host(`www.isnebraskagreatagain.com`) || Host(`isnebraskagreatagain.com`)"
       - "traefik.docker.network=traefik_public"
       - "traefik.http.services.inga.loadbalancer.server.port=3001"
-      - "traefik.http.routers.inga-www.rule=Host(`isnebraskagreatagain.com`)"
-      - "traefik.http.services.inga-www.loadbalancer.server.port=3001"
 
 networks:
   traefik_public:
