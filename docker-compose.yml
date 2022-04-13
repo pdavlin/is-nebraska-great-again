@@ -1,6 +1,6 @@
 version: '3.4'
 services:
-  is-nebraska-great-again:
+  app:
     image: inga-test:latest
     restart: unless-stopped
     ports:
@@ -8,9 +8,11 @@ services:
     networks:
       - traefik_public
     labels:
-      - "traefik.http.routers.inga.rule=Host(`local.isnebraskagreatagain.com`)"
+      - "traefik.http.routers.inga.rule=Host(`www.isnebraskagreatagain.com`)"
       - "traefik.docker.network=traefik_public"
       - "traefik.http.services.inga.loadbalancer.server.port=3001"
+      - "traefik.http.routers.inga-www.rule=Host(`isnebraskagreatagain.com`)"
+      - "traefik.http.services.inga-www.loadbalancer.server.port=3001"
 
 networks:
   traefik_public:
