@@ -1,12 +1,11 @@
-import fetch from "node-fetch";
 import "dotenv/config";
 import { format, isPast, parseISO } from "date-fns";
-import { utcToZonedTime } from "date-fns-tz";
+import { utcToZonedTime } from "date-fns-tz/esm";
 import { WinsAndRemainingGames } from "./types";
 
 const url = "https://api.collegefootballdata.com/games?year=2022&team=Nebraska";
 
-const getCfdbKey = (): string => process.env.CFDB_KEY;
+const getCfdbKey = (): string => import.meta.env.CFDB_KEY;
 
 const organizeAsHuskerAndOpponentScores = (schedule) =>
   schedule.map((game) =>
