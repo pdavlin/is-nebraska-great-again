@@ -52,11 +52,13 @@ export const formatWinLossString = (
     ? `W ${away_points}-${home_points}`
     : `L ${away_points}-${home_points}`;
 
-export const getGameTimeFromString = (game) =>
-  format(
-    utcToZonedTime(parseISO(game.start_date), "America/Chicago"),
+export const getGameTimeFromString = (game) => {
+  const gameDateObj = new Date(game.start_date);
+  return format(
+    new Date(gameDateObj.valueOf() + + gameDateObj.getTimezoneOffset() * 60 * 1000),
     game.start_time_tbd ? "MM/dd" : "MM/dd h:mmaaaaa"
   );
+};
 
 export const seasonStarted = (remainingGames: number): boolean =>
   remainingGames < 12;
