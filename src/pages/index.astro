@@ -1,10 +1,15 @@
 ---
 // Component Imports
-import { bowlIneligible, getSubtitle, computeNumberOfWinsAndRemainingGames, dateInPast, fetchScores, formatWinLossString, getGameTimeFromString, getRandomNoMessage, seasonStarted } from '../utils/scheduleUtils';
+import { bowlIneligible, computeNumberOfWinsAndRemainingGames, dateInPast, fetchScores, formatWinLossString, getGameTimeFromString, getRandomNoMessage, seasonStarted } from '../utils/scheduleUtils';
+
+import Subtitle from '../components/Subtitle.jsx';
 
 // Component Script:
 let gameData = await fetchScores();
 const winsAndRemainingGames = computeNumberOfWinsAndRemainingGames(gameData);
+const subprops = {
+    warg: winsAndRemainingGames
+}
 ---
 <html lang="en">
 <head>
@@ -48,7 +53,7 @@ const winsAndRemainingGames = computeNumberOfWinsAndRemainingGames(gameData);
                         { winsAndRemainingGames.wins >= 9 ? "oh yeah, I'm thinkin' the skers are back!" : getRandomNoMessage(winsAndRemainingGames) }
                         </div>
                         <h2 class="liberator">
-                        <span class="emphasize">{getSubtitle(winsAndRemainingGames)}</span>
+                        <Subtitle {...subprops}></Subtitle>
                         </h2>
                     </div>
                     <p>
@@ -77,7 +82,7 @@ const winsAndRemainingGames = computeNumberOfWinsAndRemainingGames(gameData);
                         <div class="game-line">
                             <div>
                             {game.home_team === 'Nebraska' 
-                                ? `vs ${game.away_team}` 
+                                ? `${game.away_team}` 
                                 : `@ ${game.home_team}`}
                             </div>
                             <div>
